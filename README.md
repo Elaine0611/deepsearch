@@ -12,6 +12,12 @@
 ![Stars](https://img.shields.io/github/stars/didilili/deepsearch-agents?logo=github&style=flat)
 [![Read Online](https://img.shields.io/badge/在线教程-点击访问-blue?logo=bookstack)](https://didilili.github.io/ai-agents-from-zero/#/%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE-%E6%B7%B1%E5%BA%A6%E7%A0%94%E6%90%9C/0-%E5%89%8D%E8%A8%80)
 
+[快速开始](#quick-start) • [项目亮点](#features) • [系统架构](#architecture) • [配套教程](#tutorials) • [加入社群](#community)
+
+  <p>
+    <a href="https://didilili.github.io/ai-agents-from-zero/#/%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE-%E6%B7%B1%E5%BA%A6%E7%A0%94%E6%90%9C/0-%E5%89%8D%E8%A8%80">📚 在线阅读</a>
+  </p>
+
 </div>
 
 **📢 说明**：本套实战项目已于 2026 年 5 月 17 日 更新完成，配套教程、章节分支和前后端代码均可对照学习。
@@ -60,6 +66,8 @@
   -> 前端展示事件、答案和文件列表
 ```
 
+<a id="features"></a>
+
 ## ✨ 项目亮点
 
 - **一主三从的多智能体架构**
@@ -89,6 +97,8 @@
 - 想把 `Tavily`、`MySQL`、`RAGFlow` 和大模型放到同一个研究助手场景里理解。
 - 想做一个比简单模型调用更接近真实开发的 AI Agent 项目。
 - 想把项目写进简历，并且能说清楚智能体层、工具层、服务层、文件层和前端层分别做了什么。
+
+<a id="architecture"></a>
 
 ## 🏗️ 系统架构
 
@@ -164,6 +174,8 @@ deepsearch-agents/
 ├── requirements.txt                # 依赖清单
 └── uv.lock                         # uv 锁定文件
 ```
+
+<a id="quick-start"></a>
 
 ## 🚀 快速开始
 
@@ -288,6 +300,18 @@ VITE_WS_BASE_URL=ws://localhost:8000
 ```text
 请先读取我上传的行业报告，再结合公开资料整理一份研究摘要。
 ```
+
+<a id="community"></a>
+
+## 💬 加入社群
+
+想和更多朋友聊聊 **AI 编程、Vibe Coding、面试经验，顺便 吹水唠嗑、吐槽老板**？欢迎加入「**全宇宙最有爱的 AI Agent 交流群 —— 胡思妙想研究所**」！🎉
+
+👉 [猛击这里！申请入所](https://github.com/didilili/ai-agents-from-zero/issues/46)：在申请帖留言，并按帖内说明添加微信。
+
+愿我们在这里少一点焦虑，多一点灵感；少一点单打独斗，多一点一起胡思妙想～
+
+<a id="tutorials"></a>
 
 ## 📚 配套教程目录
 
