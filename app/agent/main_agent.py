@@ -46,7 +46,7 @@ main_agent = create_deep_agent(
 project_root_path = Path(__file__).parents[1].resolve()
 
 
-async def run_deep_agent(task_query, session_id):
+async def run_deep_agent(task_query, session_id, language="zh"):
     """
     异步流式执行主智能体
 
@@ -107,11 +107,16 @@ async def run_deep_agent(task_query, session_id):
     3. 使用相对路径，禁止使用绝对路径
     4. 若存在上传文件，请先分析内容
     """
+    language_instruction = (
+        "\n【回答语言】最终回答请使用英语。"
+        if language == "en"
+        else "\n【回答语言】最终回答请使用中文。"
+    )
 
     try:
         # astream 会持续产出模型节点、工具节点和子智能体节点的状态片段
         async for chunk in main_agent.astream(
-            {"messages": [{"role": "user", "content": task_query + path_instruction}]},
+            {"messages": [{"role": "user", "content": task_query + path_instruction + language_instruction}]},
             config=config,
         ):
             # chunk 形如 {"model": {"messages": [...]}}，这里主要关心模型最新消息

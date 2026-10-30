@@ -4,9 +4,10 @@ import {
   SendOutlined,
   StopOutlined
 } from "@ant-design/icons";
-import { Button, Tooltip, Upload } from "antd";
+import { Button, Select, Tooltip, Upload } from "antd";
 import type { UploadFile } from "antd";
 import type { UploadedItem } from "../types";
+
 
 interface ChatComposerProps {
   isCancelling: boolean;
@@ -21,6 +22,8 @@ interface ChatComposerProps {
   stagedItems: UploadedItem[];
   uploadedItems: UploadedItem[];
   onStagedItemsChange: (items: UploadedItem[]) => void;
+  language: "zh" | "en";
+  onLanguageChange: (value: "zh" | "en") => void;
 }
 
 function toUploadedItem(file: UploadFile): UploadedItem | null {
@@ -48,6 +51,8 @@ function uniqueUploadedItems(items: UploadedItem[]): UploadedItem[] {
 }
 
 export function ChatComposer({
+  language,
+  onLanguageChange,
   isCancelling,
   isRunning,
   isUploading,
@@ -151,6 +156,17 @@ export function ChatComposer({
                 />
               </Tooltip>
             </Upload>
+            <Select<"zh" | "en">
+              aria-label="回答语言"
+              variant="borderless"
+              disabled={isRunning}
+              value={language}
+              onChange={onLanguageChange}
+              options={[
+                { value: "zh", label: "中文" },
+                { value: "en", label: "English" }
+              ]}
+            />
           </div>
 
           <Tooltip title={isRunning ? "取消当前任务" : "发送任务"}>

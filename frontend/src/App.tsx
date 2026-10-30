@@ -42,6 +42,7 @@ function createTurn(content: string): ChatTurn {
 export default function App() {
   const { message } = AntApp.useApp();
   const [query, setQuery] = useState("");
+  const [language, setLanguage] = useState<"zh" | "en">("zh");
   const [stagedItems, setStagedItems] = useState<UploadedItem[]>([]);
   const [turns, setTurns] = useState<ChatTurn[]>([]);
   const streamRef = useRef<HTMLElement | null>(null);
@@ -92,17 +93,17 @@ export default function App() {
     setQuery("");
 
     try {
-      await session.submitTask(cleanQuery);
+      await session.submitTask(cleanQuery, language);
       message.success("任务已启动，执行过程会显示在对话中");
     } catch (error) {
       setTurns((previous) =>
         previous.map((turn) =>
           turn.id === nextTurn.id
             ? {
-                ...turn,
-                isRunning: false,
-                result: error instanceof Error ? error.message : "任务启动失败"
-              }
+              ...turn,
+              isRunning: false,
+              result: error instanceof Error ? error.message : "任务启动失败"
+            }
             : turn
         )
       );
@@ -235,6 +236,8 @@ export default function App() {
         </section>
 
         <ChatComposer
+          language={language}
+          onLanguageChange={setLanguage}
           isCancelling={session.isCancelling}
           isRunning={session.isRunning}
           isUploading={session.isUploading}

@@ -76,7 +76,7 @@ class TaskRequest(BaseModel):
 
     query: str
     thread_id: str = None
-
+    language: str = "zh"
 
 def _forget_task(thread_id: str, task: asyncio.Task) -> None:
     """
@@ -105,7 +105,7 @@ async def run_task(request: TaskRequest):
         old_task.cancel()
 
     # create_task 把长耗时 Agent 执行交给事件循环，接口本身不用等待最终结果
-    task = asyncio.create_task(run_deep_agent(request.query, thread_id))
+    task = asyncio.create_task(run_deep_agent(request.query, thread_id, request.language))
     active_tasks[thread_id] = task
     task.add_done_callback(lambda finished_task: _forget_task(thread_id, finished_task))
 
