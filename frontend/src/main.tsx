@@ -9,16 +9,20 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ConfigProvider
       theme={{
-        algorithm: theme.darkAlgorithm,
+        algorithm: theme.defaultAlgorithm,
         token: {
-          colorPrimary: "#20d6ff",
-          colorSuccess: "#5dff9f",
-          colorWarning: "#ffc857",
-          colorError: "#ff5c7a",
-          colorInfo: "#7c8cff",
-          colorBgBase: "#05070b",
-          colorBgContainer: "rgba(12, 18, 28, 0.86)",
-          colorBorder: "rgba(113, 247, 255, 0.18)",
+          colorPrimary: "#256ff0",
+          colorSuccess: "#18a66e",
+          colorWarning: "#d68519",
+          colorError: "#d94761",
+          colorInfo: "#256ff0",
+          colorBgBase: "#f8fbff",
+          colorBgLayout: "#f2f8ff",
+          colorBgContainer: "#ffffff",
+          colorBgElevated: "#ffffff",
+          colorBorder: "#d6e5f7",
+          colorText: "#12244b",
+          colorTextSecondary: "#64789a",
           borderRadius: 8,
           fontFamily:
             "'IBM Plex Sans', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif",
@@ -28,11 +32,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         components: {
           Button: {
             controlHeightLG: 46,
-            primaryShadow: "0 0 24px rgba(32, 214, 255, 0.26)"
+            primaryShadow: "0 8px 20px rgba(37, 111, 240, 0.18)"
           },
           Input: {
-            activeBorderColor: "#20d6ff",
-            hoverBorderColor: "#5dff9f"
+            activeBorderColor: "#256ff0",
+            hoverBorderColor: "#83b4f4"
           }
         }
       }}

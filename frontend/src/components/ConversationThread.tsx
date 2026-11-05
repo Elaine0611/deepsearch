@@ -1,15 +1,17 @@
 import {
+  ApartmentOutlined,
+  ArrowRightOutlined,
   BranchesOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
   CloseCircleOutlined,
-  CloudServerOutlined,
   DatabaseOutlined,
   DownloadOutlined,
   FileMarkdownOutlined,
   FilePdfOutlined,
   FileSearchOutlined,
   FileTextOutlined,
+  GlobalOutlined,
   StopOutlined,
   ToolOutlined,
 } from "@ant-design/icons";
@@ -36,39 +38,36 @@ interface ConversationThreadProps {
 
 const TASK_EXAMPLES = [
   {
-    tool: "网络搜索工具",
-    title: "联网趋势研判",
+    title: "网络搜索",
+    subtitle: "趋势研究",
     prompt:
       "请使用网络搜索工具，检索 2026 年跨境电商 AI 客服趋势，列出 5 条关键变化，并附上来源链接。",
-    icon: <CloudServerOutlined aria-hidden />,
+    icon: <GlobalOutlined aria-hidden />,
+    tone: "search"
   },
   {
-    tool: "数据库查询工具",
-    title: "药品库存排查",
+    title: "数据库查询",
+    subtitle: "库存排查",
     prompt:
-      "请请使用数据库查询工具，查询库存大于 100 的药品，按库存量升序列出药品名称、批次号、仓库位置和过期日期。",
+      "请使用数据库查询工具，查询库存大于 100 的药品，按库存量升序列出药品名称、批次号、仓库位置和过期日期。",
     icon: <DatabaseOutlined aria-hidden />,
+    tone: "database"
   },
   {
-    tool: "RAGFlow 知识库",
-    title: "内部文档问答",
+    title: "RAGflow助手",
+    subtitle: "文档问答",
     prompt:
       "请使用 RAGFlow 助手，查询公司内部白皮书中关于品类策略的内容，并整理成三条可执行建议。",
-    icon: <FileSearchOutlined aria-hidden />,
+    icon: <ApartmentOutlined aria-hidden />,
+    tone: "workflow"
   },
   {
-    tool: "文件读取工具",
-    title: "上传文件分析",
+    title: "文件传输",
+    subtitle: "上传分析",
     prompt:
       "请使用文件读取工具，读取我上传的文件，提炼核心观点、风险点和待补充信息，并给出下一步分析计划。",
     icon: <FileTextOutlined aria-hidden />,
-  },
-  {
-    tool: "Markdown/PDF 工具",
-    title: "生成交付报告",
-    prompt:
-      "请使用 Markdown 文档生成工具和 Markdown 转 PDF 工具，基于本次调研结果生成一份 Markdown 报告，并转换成 PDF 保存到当前工作目录。",
-    icon: <FileMarkdownOutlined aria-hidden />,
+    tone: "file"
   },
 ];
 
@@ -380,28 +379,26 @@ export function ConversationThread({
     return (
       <div className="conversation-empty">
         <div className="empty-examples">
-          <div className="empty-examples-copy">
-            <span className="panel-kicker">TASK EXAMPLES</span>
-            <h3>选择一个工具任务开始</h3>
-            <p>
-              每个示例会触发不同工具路径，执行轨迹和输出文件会直接出现在对话里。
-            </p>
-          </div>
-
           <div className="example-grid" aria-label="研搜任务示例">
             {TASK_EXAMPLES.map((example) => (
               <button
-                className="example-card"
-                key={example.tool}
+                className={`example-card example-card--${example.tone}`}
+                key={example.title}
                 onClick={() => onUseExample(example.prompt)}
+                onPointerMove={(event) => {
+                  const card = event.currentTarget;
+                  const bounds = card.getBoundingClientRect();
+                  card.style.setProperty("--spot-x", `${event.clientX - bounds.left}px`);
+                  card.style.setProperty("--spot-y", `${event.clientY - bounds.top}px`);
+                }}
                 type="button"
               >
                 <span className="example-icon">{example.icon}</span>
                 <span className="example-copy">
-                  <span>{example.tool}</span>
                   <strong>{example.title}</strong>
-                  <small>{example.prompt}</small>
+                  <span>{example.subtitle}</span>
                 </span>
+                <ArrowRightOutlined aria-hidden className="example-arrow" />
               </button>
             ))}
           </div>
