@@ -228,10 +228,10 @@ export default function App() {
       </aside>
 
       <main className={`chat-main ${isHome ? "chat-main--home" : ""}`}>
-        <header className={`chat-hero relative mx-auto w-full ${isHome ? "chat-hero--home" : "flex items-center justify-between py-5"}`}>
+        <header className={`chat-hero relative mx-auto w-full ${isHome ? "chat-hero--home" : "chat-hero--conversation flex items-center justify-between"}`}>
           <div className="relative z-10 max-w-[670px]">
             <span className="text-xs font-bold tracking-[0.45em] text-[#5475c1]">DEEPSEARCH</span>
-            <h1 className={`${isHome ? "mt-4 text-5xl" : "mt-1 text-2xl"} font-extrabold tracking-tight text-[#10234d]`}>Hello, {DISPLAY_NAME}</h1>
+            <h1 className={`${isHome ? "mt-4 text-5xl" : "mt-1 text-xl"} font-extrabold tracking-tight text-[#10234d]`}>Hello, {DISPLAY_NAME}</h1>
             {isHome ? (
               <>
                 <p className="chat-hero-date mt-3 text-xl text-[#516890]">{formatToday(now)}</p>

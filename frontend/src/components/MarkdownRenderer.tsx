@@ -7,7 +7,7 @@ interface MarkdownRendererProps {
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
   return (
-    <div className="markdown-body">
+    <div className="markdown-body markdown-body--answer">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{

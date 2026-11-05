@@ -174,6 +174,22 @@ function FileIcon({ name }: { name: string }) {
   return <FileTextOutlined aria-hidden />;
 }
 
+function eventLabel(event: string): string {
+  const labels: Record<string, string> = {
+    session_created: "准备工作区",
+    tool_start: "调用工具",
+    assistant_call: "调用助手",
+    task_result: "任务完成",
+    task_cancelled: "任务取消",
+    error: "执行出错",
+  };
+  return labels[event] ?? event;
+}
+
+function eventMessage(event: MonitorMessage): string {
+  return event.event === "session_created" ? "本次任务的工作目录已准备好" : event.message;
+}
+
 function ThinkingTimeline({ events }: { events: MonitorMessage[] }) {
   const timelineRef = useRef<HTMLOListElement | null>(null);
 
@@ -209,15 +225,19 @@ function ThinkingTimeline({ events }: { events: MonitorMessage[] }) {
           </span>
           <div>
             <div className="thinking-event-meta">
-              <span>{event.event}</span>
+                <span>{eventLabel(event.event)}</span>
               <time dateTime={event.timestamp}>
                 {formatTime(event.timestamp)}
               </time>
             </div>
-            <p>{event.message}</p>
-            {event.event === "assistant_call" ||
-            event.event === "tool_start" ? (
-              <code>{JSON.stringify(event.data)}</code>
+            <p>{eventMessage(event)}</p>
+            {(event.event === "session_created" ||
+              event.event === "assistant_call" ||
+              event.event === "tool_start") && Object.keys(event.data).length > 0 ? (
+              <details className="thinking-event-details">
+                <summary>查看详情</summary>
+                <code>{JSON.stringify(event.data, null, 2)}</code>
+              </details>
             ) : null}
           </div>
         </li>
@@ -327,7 +347,7 @@ function AssistantMessage({
 
         <details
           className="thinking-block"
-          open={isRunning || events.length > 0}
+          open={isRunning || events.some((event) => event.event === "error")}
         >
           <summary>
             <span>
@@ -353,19 +373,18 @@ function AssistantMessage({
           </div>
         )}
 
-        <details
-          className="thinking-block artifact-block"
-          open={files.length > 0}
-        >
-          <summary>
-            <span>
-              <FileSearchOutlined aria-hidden />
-              输出文件
-            </span>
-            <strong>{files.length}</strong>
-          </summary>
-          <ArtifactShelf files={files} />
-        </details>
+        {files.length > 0 ? (
+          <details className="thinking-block artifact-block" open>
+            <summary>
+              <span>
+                <FileSearchOutlined aria-hidden />
+                输出文件
+              </span>
+              <strong>{files.length}</strong>
+            </summary>
+            <ArtifactShelf files={files} />
+          </details>
+        ) : null}
       </div>
     </article>
   );

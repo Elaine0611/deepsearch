@@ -834,8 +834,8 @@ textarea {
 .chat-main {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   height: 100dvh;
   min-height: 100dvh;
   overflow: hidden;
@@ -843,7 +843,13 @@ textarea {
 }
 
 .chat-hero {
+  flex: none;
   max-width: 900px;
+}
+
+.chat-hero--conversation {
+  padding: 14px 0 18px;
+  border-bottom: 1px solid rgba(77, 137, 218, 0.12);
 }
 
 .chat-hero--home {
@@ -896,14 +902,15 @@ textarea {
 }
 
 .chat-stream-panel {
+  flex: 1;
   min-height: 0;
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  padding: 26px 0 210px;
+  padding: 20px 0 210px;
   overflow-y: auto;
   scroll-padding-bottom: 210px;
-  scrollbar-color: rgba(32, 214, 255, 0.36) transparent;
+  scrollbar-color: rgba(82, 136, 207, 0.3) transparent;
   scrollbar-width: thin;
 }
 
@@ -1055,12 +1062,12 @@ textarea {
 
 .conversation-thread {
   display: grid;
-  gap: 46px;
+  gap: 26px;
 }
 
 .conversation-turn {
   display: grid;
-  gap: 22px;
+  gap: 16px;
 }
 
 .chat-message {
@@ -1084,29 +1091,29 @@ textarea {
   width: 36px;
   height: 36px;
   flex: 0 0 auto;
-  border: 1px solid rgba(93, 255, 159, 0.34);
-  border-radius: 8px;
-  background: rgba(93, 255, 159, 0.1);
-  color: var(--green);
+  border: 1px solid rgba(61, 135, 221, 0.2);
+  border-radius: 11px;
+  background: rgba(232, 243, 255, 0.92);
+  color: #4482ca;
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .message-bubble {
   max-width: min(760px, 100%);
   min-width: 0;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 8px;
-  background: rgba(12, 18, 28, 0.84);
-  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(93, 153, 225, 0.2);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 24px rgba(79, 119, 174, 0.08);
   padding: 14px;
 }
 
 .chat-message--user .message-bubble {
   max-width: min(560px, 82%);
-  border-color: rgba(32, 214, 255, 0.28);
-  background: rgba(32, 214, 255, 0.1);
-  box-shadow: 0 12px 38px rgba(32, 214, 255, 0.08);
+  border-color: rgba(113, 180, 245, 0.3);
+  background: rgba(228, 243, 255, 0.82);
+  box-shadow: 0 8px 22px rgba(79, 119, 174, 0.08);
   padding: 12px 14px;
 }
 
@@ -1126,11 +1133,12 @@ textarea {
   gap: 12px;
   margin-bottom: 8px;
   color: var(--muted);
-  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-family: inherit;
   font-size: 12px;
+  font-weight: 500;
 }
 
-.message-bubble p {
+.message-bubble > p {
   margin: 0;
   color: var(--text);
   line-height: 1.75;
@@ -1138,10 +1146,11 @@ textarea {
 }
 
 .thinking-block {
-  margin: 4px 0 18px;
-  border: 1px solid rgba(113, 247, 255, 0.14);
-  border-radius: 8px;
-  background: rgba(6, 14, 22, 0.62);
+  margin: 4px 0 14px;
+  border: 1px solid rgba(93, 153, 225, 0.19);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 8px 24px rgba(79, 119, 174, 0.06);
   overflow: hidden;
 }
 
@@ -1150,11 +1159,13 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 44px;
-  color: #d9faff;
+  min-height: 42px;
+  color: #415b80;
   cursor: pointer;
   list-style: none;
-  padding: 0 12px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .thinking-block summary::-webkit-details-marker {
@@ -1169,14 +1180,15 @@ textarea {
 
 .thinking-block summary strong {
   min-width: 28px;
-  color: var(--cyan);
-  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  color: #6789b7;
+  font-family: inherit;
+  font-weight: 500;
   text-align: right;
 }
 
 .thinking-timeline {
   display: grid;
-  gap: 8px;
+  gap: 7px;
   max-height: 360px;
   margin: 0;
   padding: 0 12px 12px;
@@ -1188,10 +1200,12 @@ textarea {
   display: grid;
   grid-template-columns: 30px 1fr;
   gap: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(93, 153, 225, 0.14);
+  border-radius: 10px;
+  background: rgba(247, 251, 255, 0.82);
+  color: #425b7f;
   padding: 9px;
+  font-size: 13px;
 }
 
 .thinking-event-icon {
@@ -1234,7 +1248,7 @@ textarea {
   justify-content: space-between;
   gap: 8px;
   color: var(--muted);
-  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-family: inherit;
   font-size: 11px;
 }
 
@@ -1246,10 +1260,26 @@ textarea {
 .thinking-event code {
   display: block;
   margin-top: 6px;
-  color: #aeefff;
+  border-radius: 8px;
+  background: rgba(235, 243, 253, 0.8);
+  color: #526b91;
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 11px;
+  padding: 8px;
+  white-space: pre-wrap;
   overflow-wrap: anywhere;
+}
+
+.thinking-event-details {
+  margin-top: 6px;
+}
+
+.thinking-event-details summary {
+  display: inline-flex;
+  min-height: 0;
+  padding: 0;
+  color: #527cac;
+  font-size: 11px;
 }
 
 .thinking-empty,
@@ -1271,11 +1301,11 @@ textarea {
 .assistant-answer--pending {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(93, 255, 159, 0.14);
-  border-radius: 8px;
+  border: 1px solid rgba(93, 153, 225, 0.18);
+  border-radius: 12px;
   background:
-    linear-gradient(120deg, rgba(93, 255, 159, 0.08), rgba(32, 214, 255, 0.035) 48%, rgba(93, 255, 159, 0.06)),
-    rgba(93, 255, 159, 0.035);
+    linear-gradient(120deg, rgba(233, 243, 255, 0.86), rgba(255, 255, 255, 0.9) 48%, rgba(239, 246, 255, 0.82)),
+    #ffffff;
   color: var(--muted);
   padding: 14px;
 }
@@ -1284,7 +1314,7 @@ textarea {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, transparent 0 32%, rgba(113, 247, 255, 0.12) 46%, transparent 60% 100%);
+  background: linear-gradient(100deg, transparent 0 32%, rgba(127, 183, 241, 0.16) 46%, transparent 60% 100%);
   transform: translateX(-120%);
   animation: loader-scan 2.8s ease-in-out infinite;
 }
@@ -1300,15 +1330,15 @@ textarea {
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #dffcff;
+  color: #3d587e;
 }
 
 .loader-status strong {
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .loader-duration {
-  color: #9fc1d0;
+  color: #7890ad;
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 12px;
 }
@@ -1350,7 +1380,7 @@ textarea {
   height: 2px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(93, 153, 225, 0.15);
 }
 
 .loader-track::after {
@@ -1375,10 +1405,10 @@ textarea {
 
 .loader-steps li {
   min-height: 26px;
-  border: 1px solid rgba(113, 247, 255, 0.14);
+  border: 1px solid rgba(93, 153, 225, 0.19);
   border-radius: 8px;
-  background: rgba(5, 10, 16, 0.5);
-  color: #9fc1d0;
+  background: rgba(255, 255, 255, 0.84);
+  color: #60799b;
   padding: 4px 9px;
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 12px;
@@ -1431,10 +1461,10 @@ textarea {
   }
 }
 
-.markdown-body {
-  color: var(--text);
-  font-size: 16px;
-  line-height: 1.88;
+.markdown-body--answer {
+  color: #263b60;
+  font-size: 15px;
+  line-height: 1.65;
   overflow-wrap: anywhere;
 }
 
@@ -1450,51 +1480,48 @@ textarea {
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4 {
-  color: #f4fbff;
-  font-weight: 800;
-  line-height: 1.3;
+  color: #2d4770;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .markdown-body h1 {
-  margin: 22px 0 12px;
-  font-size: 24px;
-}
-
-.markdown-body h2 {
-  margin: 20px 0 10px;
+  margin: 16px 0 8px;
   font-size: 21px;
 }
 
-.markdown-body h3 {
-  margin: 18px 0 8px;
-  color: #dffcff;
+.markdown-body h2 {
+  margin: 15px 0 7px;
   font-size: 18px;
 }
 
-.markdown-body h4 {
-  margin: 16px 0 8px;
+.markdown-body h3 {
+  margin: 14px 0 6px;
   font-size: 16px;
 }
 
+.markdown-body h4 {
+  margin: 12px 0 6px;
+  font-size: 15px;
+}
+
 .markdown-body p {
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 
 .markdown-body strong {
-  color: #ffffff;
-  font-weight: 800;
+  color: #29466f;
+  font-weight: 600;
 }
 
 .markdown-body em {
-  color: #c5f7ff;
+  color: #506f9a;
 }
 
 .markdown-body ul,
 .markdown-body ol {
-  display: grid;
-  gap: 6px;
-  margin: 0 0 14px;
-  padding-left: 24px;
+  margin: 0 0 10px;
+  padding-left: 21px;
 }
 
 .markdown-body ul {
@@ -1507,10 +1534,15 @@ textarea {
 
 .markdown-body li {
   padding-left: 2px;
+  line-height: 1.6;
+}
+
+.markdown-body li + li {
+  margin-top: 4px;
 }
 
 .markdown-body li::marker {
-  color: rgba(113, 247, 255, 0.78);
+  color: #80afe8;
 }
 
 .markdown-body li>p {
@@ -1518,29 +1550,29 @@ textarea {
 }
 
 .markdown-body blockquote {
-  margin: 14px 0;
-  border-left: 3px solid rgba(32, 214, 255, 0.65);
-  border-radius: 0 8px 8px 0;
-  background: rgba(32, 214, 255, 0.07);
-  color: #d5f7ff;
+  margin: 10px 0;
+  border-left: 3px solid rgba(94, 159, 232, 0.65);
+  border-radius: 0 9px 9px 0;
+  background: rgba(232, 242, 255, 0.7);
+  color: #4c668b;
   padding: 10px 12px;
 }
 
 .markdown-body code {
-  border: 1px solid rgba(32, 214, 255, 0.18);
+  border: 1px solid rgba(93, 153, 225, 0.18);
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.28);
-  color: #9ceeff;
+  background: rgba(232, 242, 255, 0.78);
+  color: #365d94;
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.92em;
   padding: 0.12em 0.35em;
 }
 
 .markdown-body pre {
-  margin: 14px 0;
-  border: 1px solid rgba(113, 247, 255, 0.16);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.34);
+  margin: 10px 0;
+  border: 1px solid rgba(93, 153, 225, 0.18);
+  border-radius: 10px;
+  background: rgba(241, 247, 255, 0.94);
   overflow: auto;
   padding: 12px;
 }
@@ -1548,7 +1580,7 @@ textarea {
 .markdown-body pre code {
   border: 0;
   background: transparent;
-  color: #dffcff;
+  color: #355478;
   padding: 0;
 }
 
@@ -1571,24 +1603,24 @@ textarea {
 
 .markdown-body th,
 .markdown-body td {
-  border: 1px solid rgba(113, 247, 255, 0.16);
-  padding: 9px 10px;
+  border: 1px solid rgba(93, 153, 225, 0.2);
+  padding: 8px 10px;
   text-align: left;
 }
 
 .markdown-body th {
-  background: rgba(32, 214, 255, 0.1);
-  color: #e6fbff;
+  background: rgba(228, 240, 255, 0.88);
+  color: #385579;
 }
 
 .markdown-body td {
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .markdown-body hr {
-  margin: 18px 0;
+  margin: 14px 0;
   border: 0;
-  border-top: 1px solid rgba(113, 247, 255, 0.16);
+  border-top: 1px solid rgba(93, 153, 225, 0.2);
 }
 
 .markdown-body input[type="checkbox"] {
@@ -1597,7 +1629,7 @@ textarea {
 }
 
 .artifact-block {
-  margin: 18px 0 0;
+  margin: 12px 0 0;
 }
 
 .artifact-shelf {
@@ -1612,9 +1644,9 @@ textarea {
   align-items: center;
   gap: 9px;
   min-height: 52px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(93, 153, 225, 0.17);
+  border-radius: 10px;
+  background: rgba(247, 251, 255, 0.88);
   padding: 8px;
 }
 
@@ -1624,9 +1656,9 @@ textarea {
   width: 34px;
   height: 34px;
   color: var(--amber);
-  border: 1px solid rgba(255, 200, 87, 0.28);
+  border: 1px solid rgba(232, 174, 89, 0.24);
   border-radius: 8px;
-  background: rgba(255, 200, 87, 0.08);
+  background: rgba(255, 242, 222, 0.8);
 }
 
 .artifact-copy {
