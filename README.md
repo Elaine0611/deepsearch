@@ -20,6 +20,12 @@
 
 </div>
 
+> **个人学习说明**
+>
+> 本仓库基于原项目 [「深度研搜」](https://github.com/didilili/deepsearch-agents) 开展个人学习实践。我会从调整前端界面开始，逐步扩展小功能，借此理解前端交互、后端接口与 Agent 执行的完整流程。这里记录的是我的学习过程，原项目及配套教程来自原作者。
+>
+> 本地开发端口：前端 `http://localhost:5174`，后端 `http://localhost:8001`。
+
 **📢 说明**：本套实战项目已于 2026 年 5 月 17 日 更新完成，配套教程、章节分支和前后端代码均可对照学习。
 
 如果你正在找一个适合学习 `DeepAgents`、`WebSocket`、`Tavily`、`RAGFlow` 和 AI Agent 工程开发的实战项目，「深度研搜」很可能是最适合你的项目。
@@ -251,7 +257,7 @@ RAGFlow 不在本仓库的 Docker Compose 中启动，需要接入你已有的 R
 ### 7. 启动后端
 
 ```bash
-uv run uvicorn app.api.server:app --host 0.0.0.0 --port 8000 --reload
+uv run uvicorn app.api.server:app --host 0.0.0.0 --port 8001 --reload
 ```
 
 后端默认接口：
@@ -273,18 +279,20 @@ pnpm install
 pnpm dev
 ```
 
+前端页面：`http://localhost:5174`
+
 前端默认连接：
 
 ```text
-API: http://localhost:8000
-WS:  ws://localhost:8000
+API: http://localhost:8001
+WS:  ws://localhost:8001
 ```
 
 如需修改，可以在 `frontend/.env.local` 中配置：
 
 ```bash
-VITE_API_BASE_URL=http://localhost:8000
-VITE_WS_BASE_URL=ws://localhost:8000
+VITE_API_BASE_URL=http://localhost:8001
+VITE_WS_BASE_URL=ws://localhost:8001
 ```
 
 ### 9. 试几个任务
